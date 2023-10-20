@@ -30,10 +30,8 @@ export default class Musician {
     }
   }
 
-
-
-  addMusicianToList(name, birthyear) {
-    this.musicianList.push(new Musicians2(name, birthyear));
+  addMusicianToList(name, birthyear, instrument) {
+    this.musicianList.push(new Musicians2(name, birthyear, instrument));
     this.#updateJsonFile();
   }
 
@@ -59,5 +57,4 @@ export default class Musician {
   getLength() {
     return this.musicianList.length;
   }
-}
-
+} 

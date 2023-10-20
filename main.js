@@ -18,9 +18,16 @@ while (run) {
       const musiciansName = prompt();
       console.log("What year was the musicers born?");
       const birthyear = prompt();
-      musicianList.addMusicianToList(musiciansName, birthyear);
+      //     console.log("How old is the musician?");
+      //   console.log(musicianList.birthyearToAge(birthyear));
+      console.log("What instrument deos the musicer play?");
+      const instrument = prompt();
+      musicianList.addMusicianToList(musiciansName, birthyear, instrument);
       break;
+
   }
 
 }
+
+
 
