@@ -1,38 +1,60 @@
-//index bara grundnavigering
-//Band.js och musician.js ska hålla information om alla objekt och ansvarar för att läsa in alla objekt som är sparade in JSON-filen.
-//Ska finnas metoder i js-filerna låter mig skriva ut varje enskilt objelt.
+// DENNA ÄR DOGS.JS I LINUS EXEMPEL
 
-export default class Band {
-  #namn;
-  #CurrentInBand;
+import fs from "fs";
+import bands2 from "./bands2.js";
 
-  constructor(name, CurrentInBand = false) {
-    this.#namn = name;
-    this.#CurrentInBand = CurrentInBand;
+export default class Bands {
+  bandsList = [];
+
+  constructor() {
+    this.fetchBandsList();
   }
 
-  get name() {
-    return this.#namn;
+  get bandList() {
+    return this.bandList;
   }
 
-  get checkedIn() {
-    return this.#CurrentInBand;
+  fetchBandsList() {
+    const jsonString = fs.readFileSync("bands.json");
+    const data = JSON.parse(jsonString);
+
+
+    for (let i = 0; i < data.length; i++) {
+      this.bandList.push(new Band2(data[i]));
+    }
   }
 
-  set name(newName) {
-    this.#namn = newName;
+  WriteOutBand() {
+    for (let i = 0; i < this.bandList.length; i++) {
+      console.log(`${i + 1}. ${this.bandList[i].name}`);
+    }
   }
 
-  checkInAndOut() {
-    this.#CurrentInBand = !this.#CurrentInBand;
+  addBandToList(name, bandformed, instrument) {
+    this.bandList.push(new Band2(name, birthyear, instrument));
+    this.#updateJsonFile();
   }
 
-  // Skapar ett objekt med denna hundens egenskaps information. 
-  // Används när vi ska skicka in till "Hundar.json". 
-  dataInfo() {
-    return {
-      "name": this.#namn,
-      "checkedIn": this.#CurrentInBand
-    };
+  removeBandFromList(index) {
+    this.bandList.splice(index, 1);
+    this.#updateJsonFile();
   }
-}
+
+  #updateJsonFile() {
+    let tempList = [];
+    for (let i = 0; i < this.bandList.length; i++) {
+
+      tempList.push(this.bandList[i].dataInfo());
+    }
+
+    fs.writeFileSync('./bands.json', JSON.stringify(tempList, null, 2), (err) => {
+      if (err) throw err;
+      console.log('Data written to file');
+    });
+  }
+
+
+  getLength() {
+    return this.bandList.length;
+  }
+} 

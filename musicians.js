@@ -24,7 +24,7 @@ export default class Musician {
     }
   }
 
-  skrivUtMusiker() {
+  writeOutMusician() {
     for (let i = 0; i < this.musicianList.length; i++) {
       console.log(`${i + 1}. ${this.musicianList[i].name}`);
     }
