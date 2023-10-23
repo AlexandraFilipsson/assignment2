@@ -30,17 +30,17 @@ export default class Bands {
     }
   }
 
-  addBandToList(name, bandformed, instrument) {
-    this.bandList.push(new Band2(name, birthyear, instrument));
+  addBandToList(name, bandformed, disbandment,) {
+    this.bandList.push(new Band2(name, bandformed, disbandment));
     this.#updateJsonFile();
   }
 
   removeBandFromList(index) {
     this.bandList.splice(index, 1);
-    this.#updateJsonFile();
+    this.updateJsonFile();
   }
 
-  #updateJsonFile() {
+  updateJsonFile() {
     let tempList = [];
     for (let i = 0; i < this.bandList.length; i++) {
 

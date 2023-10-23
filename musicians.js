@@ -1,4 +1,4 @@
-
+// DENNA ÄR DOGS.JS I LINUS EXEMPEL
 
 import fs from "fs";
 import Musicians2 from "./musicians2.js";
@@ -24,7 +24,7 @@ export default class Musician {
     }
   }
 
-  writeOutMusician() {
+  WriteOutMusician() {
     for (let i = 0; i < this.musicianList.length; i++) {
       console.log(`${i + 1}. ${this.musicianList[i].name}`);
     }
@@ -43,6 +43,7 @@ export default class Musician {
   #updateJsonFile() {
     let tempList = [];
     for (let i = 0; i < this.musicianList.length; i++) {
+
 
       tempList.push(this.musicianList[i].dataInfo());
     }

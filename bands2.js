@@ -4,7 +4,7 @@ export default class Bands2 {
   bandformed;
   disbandment;
   bandmembers;
-  previousBandmebers
+  previousBandmebers;
 
   //GLÖM INTE LÄGGA TILL VILKET INSTRUMENT DE SPELAR 
 
