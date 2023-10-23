@@ -1,13 +1,16 @@
 // DENNA ÄR DOGS.JS I LINUS EXEMPEL
 
 import fs from "fs";
-import Musicians2 from "./musicians2.js";
+import Musicians2 from "./musician2.js";
+import Bands from "./bands.js";
 
 export default class Musician {
   musicianList = [];
 
   constructor() {
     this.fetchMusiciansList();
+    this.band = new Bands();
+
   }
 
   get musicianList() {
@@ -20,35 +23,18 @@ export default class Musician {
 
 
     for (let i = 0; i < data.length; i++) {
-      this.musicianList.push(new Musicians2(data[i]));
-    }
-  }
-
-  WriteOutMusician() {
-    for (let i = 0; i < this.musicianList.length; i++) {
-      console.log(`${i + 1}. ${this.musicianList[i].name}`);
+      this.musicianList.push(data[i]);
     }
   }
 
   addMusicianToList(name, birthyear, instrument) {
-    this.musicianList.push(new Musicians2(name, birthyear, instrument));
-    this.#updateJsonFile();
+    const newMusician = new Musicians2(name, birthyear, instrument);
+    this.musicianList.push(newMusician.dataInfo());
+    this.writeJson()
   }
 
-  removeMusicianFromList(index) {
-    this.musicianList.splice(index, 1);
-    this.#updateJsonFile();
-  }
-
-  #updateJsonFile() {
-    let tempList = [];
-    for (let i = 0; i < this.musicianList.length; i++) {
-
-
-      tempList.push(this.musicianList[i].dataInfo());
-    }
-
-    fs.writeFileSync('./musicians.json', JSON.stringify(tempList, null, 2), (err) => {
+  writeJson() {
+    fs.writeFileSync('./musicians.json', JSON.stringify(this.musicianList, null, 2), (err) => {
       if (err) throw err;
       console.log('Data written to file');
     });
@@ -58,4 +44,30 @@ export default class Musician {
   getLength() {
     return this.musicianList.length;
   }
+
+  displayAllMusicians() {
+    for (let i = 0; i < this.getLength(); i++) {
+      console.log(`${i}. ${this.musicianList[i].name} ${this.musicianList[i].Age}`)
+    }
+  }
+  displayOneMusicians(options) {
+    console.log(this.musicianList[options])
+  }
+
+  createBand(options, bandName, created, instrumet) {
+    const temptId = this.band.createBand(bandName, created, this.musicianList[options].musicianId, this.musicianList[options].name, instrumet);
+    this.editMusicList(options, instrumet, temptId, bandName, created)
+    this.writeJson()
+    this.band.writeJson()
+  }
+
+  editMusicList(option, instrument, temptId, bandName, created) {
+    if (!this.musicianList[option].Instrument.includes(instrument)) {
+      this.musicianList[option].Instrument.push(instrument);
+    }
+    this.musicianList[option].BandmemberIn.push({ bandName: bandName, bandId: temptId, Joined: created });
+
+
+  }
+
 } 

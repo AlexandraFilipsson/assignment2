@@ -8,70 +8,25 @@ export default class Bands2 {
 
   //GLÖM INTE LÄGGA TILL VILKET INSTRUMENT DE SPELAR 
 
-  constructor(name, bandformed, disbandment, bandmembers, previousBandmebers) {
+  constructor(name, created, id, musicianName, instrument) {
     this.namn = name;
-    this.bandformed = bandformed;
-    this.disbandment = disbandment;
-    this.bandmembers = bandmembers;
-    this.previousBandmebers = previousBandmebers;
+    this.bandformed = created;
+    this.bandmembers = musicianName;
+    this.instrument = instrument;
+    this.memberId = id;
   }
 
-  get name() {
-    return this.namn;
-  }
-
-  set name(newName) {
-    this.namn = newName;
-  }
-
-  get bandformed() {
-    this.bandformed;
-  }
-
-  set bandformed(newBandformed) {
-    this.bandformed = newBandformed;
-  }
-
-  get disbandment() {
-    this.disbandment
-  }
-  set disbandment(newDisbandment) {
-    this.disbandment = newDisbandment;
-  }
-
-  get bandmembers() {
-    this.bandmembers
-  }
-  set bandmembers(newBandmembers) {
-    this.bandmembers = newBandmembers;
-  }
-
-  get previousBandmebers() {
-    this.previousBandmebers
-  }
-  set previousBandmebers(newPreviousBandmebers) {
-    this.previousBandmebers = newPreviousBandmebers;
-  }
-
-  birthyearToAge(a) {
-    const todaysYear = new Date();
-    const BornYear = new Date(a);
-    const TodayA = (todaysYear.getFullYear() * 12)
-    const YearA = (BornYear.getFullYear() * 12)
-    const Age = (Math.floor((TodayA - YearA) / 12));
-    return Age;
-  }
 
   // Skapar ett objekt med denna hundens egenskaps information. 
   // Används när vi ska skicka in till "Hundar.json". 
   dataInfo() {
     return {
+      bandId: 'id' + new Date().getTime(),
       "Name": this.namn,
       "Bandformed": this.bandformed,
-      "Disbandment": this.disbandment,
-      "bandmembers": [this.bandmembers],
-      "PreviousBandmebers in": [this.bandmembers],
-      "Previous bandmember in": []
-    };
+      "Disbandment": null,
+      "CurrentBandMember": [{ memberId: this.memberId, name: this.bandmembers, instrument: this.instrument, yearJoined: this.bandformed }],
+      "PreviousBandmebers in": []
+    }
   }
 } 

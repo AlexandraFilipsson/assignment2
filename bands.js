@@ -32,7 +32,7 @@ export default class Bands {
 
   addBandToList(name, bandformed, disbandment,) {
     this.bandList.push(new Band2(name, bandformed, disbandment));
-    this.#updateJsonFile();
+    this.updateJsonFile();
   }
 
   removeBandFromList(index) {
