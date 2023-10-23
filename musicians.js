@@ -1,4 +1,4 @@
-// DENNA ÄR DOGS.JS I LINUS EXEMPEL
+
 
 import fs from "fs";
 import Musicians2 from "./musicians2.js";
