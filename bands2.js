@@ -5,15 +5,17 @@ export default class Bands2 {
   disbandment;
   bandmembers;
   previousBandmebers;
+  info;
 
   //GLÖM INTE LÄGGA TILL VILKET INSTRUMENT DE SPELAR 
 
-  constructor(name, created, id, musicianName, instrument) {
+  constructor(name, created, id, musicianName, instrument, info) {
     this.namn = name;
     this.bandformed = created;
     this.bandmembers = musicianName;
     this.instrument = instrument;
     this.memberId = id;
+    this.info = info;
   }
 
 
@@ -26,7 +28,8 @@ export default class Bands2 {
       "Bandformed": this.bandformed,
       "Disbandment": null,
       "CurrentBandMember": [{ memberId: this.memberId, name: this.bandmembers, instrument: this.instrument, yearJoined: this.bandformed }],
-      "PreviousBandmebers in": []
+      "PreviousBandmebersIn": [],
+      "info": this.info
     }
   }
-} 
+}

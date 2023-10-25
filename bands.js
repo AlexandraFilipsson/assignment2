@@ -1,13 +1,14 @@
 // DENNA ÄR DOGS.JS I LINUS EXEMPEL
 
 import fs from "fs";
-import bands2 from "./bands2.js";
+import Band2 from "./bands2.js";
 
 export default class Bands {
-  bandsList = [];
+  bandList = [];
 
   constructor() {
     this.fetchBandsList();
+
   }
 
   get bandList() {
@@ -18,43 +19,28 @@ export default class Bands {
     const jsonString = fs.readFileSync("bands.json");
     const data = JSON.parse(jsonString);
 
-
     for (let i = 0; i < data.length; i++) {
       this.bandList.push(new Band2(data[i]));
     }
-  }
-
-  WriteOutBand() {
-    for (let i = 0; i < this.bandList.length; i++) {
-      console.log(`${i + 1}. ${this.bandList[i].name}`);
-    }
-  }
-
-  addBandToList(name, bandformed, disbandment,) {
-    this.bandList.push(new Band2(name, bandformed, disbandment));
-    this.updateJsonFile();
-  }
-
-  removeBandFromList(index) {
-    this.bandList.splice(index, 1);
-    this.updateJsonFile();
-  }
-
-  updateJsonFile() {
-    let tempList = [];
-    for (let i = 0; i < this.bandList.length; i++) {
-
-      tempList.push(this.bandList[i].dataInfo());
-    }
-
-    fs.writeFileSync('./bands.json', JSON.stringify(tempList, null, 2), (err) => {
-      if (err) throw err;
-      console.log('Data written to file');
-    });
   }
 
 
   getLength() {
     return this.bandList.length;
   }
-} 
+
+  createBand(name, created, id, musicianName, instrument, info) {
+    const newBand = new Band2(name, created, id, musicianName, instrument, info);
+    this.bandList.push(newBand.dataInfo());
+    return newBand.dataInfo().bandId;
+  }
+  //det behöver inte vara exakt samma namn i creatBand
+
+  writeJson() {
+    fs.writeFileSync('./bands.json', JSON.stringify(this.bandList, null, 2), (err) => {
+      if (err) throw err;
+      console.log('Data written to file');
+    });
+  }
+
+}

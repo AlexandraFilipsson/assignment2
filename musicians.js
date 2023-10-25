@@ -27,10 +27,10 @@ export default class Musician {
     }
   }
 
-  addMusicianToList(name, birthyear, instrument) {
-    const newMusician = new Musicians2(name, birthyear, instrument);
+  addMusicianToList(name, birthyear, instrument, info) {
+    const newMusician = new Musicians2(name, birthyear, instrument, info);
     this.musicianList.push(newMusician.dataInfo());
-    this.writeJson()
+    this.writeJson();
   }
 
   writeJson() {
@@ -47,15 +47,15 @@ export default class Musician {
 
   displayAllMusicians() {
     for (let i = 0; i < this.getLength(); i++) {
-      console.log(`${i}. ${this.musicianList[i].name} ${this.musicianList[i].Age}`)
-    }
+      console.log(`${i}. ${this.musicianList[i].name}`)
+    } //TA BORT ${this.musicianList[i].Age} - behövs ej
   }
   displayOneMusicians(options) {
     console.log(this.musicianList[options])
   }
 
-  createBand(options, bandName, created, instrumet) {
-    const temptId = this.band.createBand(bandName, created, this.musicianList[options].musicianId, this.musicianList[options].name, instrumet);
+  createBand(options, bandName, created, instrumet, info) {
+    const temptId = this.band.createBand(bandName, created, this.musicianList[options].musicianId, this.musicianList[options].name, instrumet, info);
     this.editMusicList(options, instrumet, temptId, bandName, created)
     this.writeJson()
     this.band.writeJson()
