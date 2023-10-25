@@ -1,4 +1,4 @@
-// DENNA ÄR DOGS.JS I LINUS EXEMPEL
+
 
 import fs from "fs";
 import Band2 from "./bands2.js";
@@ -43,4 +43,24 @@ export default class Bands {
     });
   }
 
+  onGoingBand() {
+    const temp = [];
+    for (let i = 0; i < this.bandList; i++) {
+      if (this.bandList[i].disbandment === null) {
+        temp.push({ bandId: this.bandList[i].bandId, bandName: this.bandList[i].bandName })
+      }
+    }
+  }
+
+  displayOngoingBand() {
+    const temp = this.onGoingBand();
+    if (temp.length != 0) {
+      for (let i = 0; i < temp.length; i++)
+        console.log(`${i}.${temp.bandName}`)
+    }
+    return temp;
+  }
+  editBandList(index, musicianId, musicanName, instrument, date) {
+    this.bandList[index].BandmemberIn.push({ musicianId: musicianId, musicanName: musicanName, instrument: instrument, Bandformed: date })
+  }
 }

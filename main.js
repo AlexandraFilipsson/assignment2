@@ -7,14 +7,14 @@ const prompt = PromptSync({ sigint: true });
 let run = true;
 while (run) {
   const musicianList = new Musician();
-
+  const bandList = new Band();
 
   console.log(`
     Menu options:
   1. Add a new musician
   2. Show musician 
   3. Create a bandmember
-  4. Show bandmember
+  4. Add a musician to a band
   5. Remove a band
  `)
 
@@ -30,9 +30,9 @@ while (run) {
       const birthyear = prompt();
       //     console.log("How old is the musician?");
       //   console.log(musicianList.birthyearToAge(birthyear));
-      console.log("What instrument does the musicer play?");
+      console.log("What instrument does the musician play?");
       let instrument = prompt();
-      console.log("Info about the musicer?");
+      console.log("Info about the musician?");
       const info = prompt();
       musicianList.addMusicianToList(someName, birthyear, instrument, info);
       break;
@@ -67,7 +67,35 @@ while (run) {
           let info = prompt();
           musicianList.createBand(options, bandName, created, instrument, info);
         } //använd let istället för const???
+      } break;
+    case "4":
+      if (musician.musicianList.lenght === 0) {
+        console.log('This band does not exist!')
+      } else if (band.bandList.lenght === 0) {
+        console.log('This band does not exist')
+      } else {
+        musicianList.displayAllMusicians();
+        const options = prompt('Vilken musiker du vill ha?');
+        if (options < 0 || options > musician.musicianList.getLength() || isNaN(options)) {
+          console.log('The option does not exist');
+        } else {
+          const instrument = prompt("Vad gör instrument spelar musikern?");
+          const temp = band.displayOngoingBand();
+          if (temp.lenght === 0) {
+            console.log('It does not exist any current band')
+          } else {
+            const option2 = prompt('What band would you like to have')
+            if (option2 < 0 || option2 > temp.lenght || isNaN(option2)) {
+              console.log('Option does not exist!');
+            } else {
+              musician.addMusicianToBand(option, instrument, temp[option2].bandId, temp[option2])
+            }
+          }
+        }
       }
+      break;
+    default:
+      console.log('option does not exist');
 
   }
 }

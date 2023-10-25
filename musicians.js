@@ -48,7 +48,7 @@ export default class Musician {
   displayAllMusicians() {
     for (let i = 0; i < this.getLength(); i++) {
       console.log(`${i}. ${this.musicianList[i].name}`)
-    } //TA BORT ${this.musicianList[i].Age} - behövs ej
+    }
   }
   displayOneMusicians(options) {
     console.log(this.musicianList[options])
@@ -63,11 +63,14 @@ export default class Musician {
 
   editMusicList(option, instrument, temptId, bandName, created) {
     if (!this.musicianList[option].Instrument.includes(instrument)) {
-      this.musicianList[option].Instrument.push(instrument);
     }
     this.musicianList[option].BandmemberIn.push({ bandName: bandName, bandId: temptId, Joined: created });
-
-
   }
-
-} 
+  addMusicianToBand(muscianIndex, instrument, bandId, bandName) {
+    let date = new Date().getFullYear();
+    this.editMusicianList(musicianIndex, instrument, bandId, bandName);
+    this.band.editBandList(this.band.bandList.findIndex(x => x.bandId === bandId), this.musicianList[musicianIndex].musicianId, this.musicianList[i].name, instrument, date)
+    this.band.writeJson();
+    this.writeJson();
+  }
+}

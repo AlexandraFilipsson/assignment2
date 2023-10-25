@@ -7,7 +7,7 @@ export default class Bands2 {
   previousBandmebers;
   info;
 
-  //GLÖM INTE LÄGGA TILL VILKET INSTRUMENT DE SPELAR 
+
 
   constructor(name, created, id, musicianName, instrument, info) {
     this.namn = name;
