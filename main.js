@@ -13,7 +13,7 @@ while (run) {
     Menu options:
   1. Add a new musician
   2. Show musician 
-  3. Create a bandmember
+  3. Create a band
   4. Add a musician to a band
   5. Remove a band
  `)
@@ -28,8 +28,6 @@ while (run) {
       let someName = prompt();
       console.log("What year was the musicers born?");
       const birthyear = prompt();
-      //     console.log("How old is the musician?");
-      //   console.log(musicianList.birthyearToAge(birthyear));
       console.log("What instrument does the musician play?");
       let instrument = prompt();
       console.log("Info about the musician?");
@@ -69,18 +67,18 @@ while (run) {
         } //använd let istället för const???
       } break;
     case "4":
-      if (musician.musicianList.lenght === 0) {
+      if (musicianList.getLength() === 0) {
         console.log('This band does not exist!')
-      } else if (band.bandList.lenght === 0) {
+      } else if (bandList.getLength() === 0) {
         console.log('This band does not exist')
       } else {
         musicianList.displayAllMusicians();
         const options = prompt('Vilken musiker du vill ha?');
-        if (options < 0 || options > musician.musicianList.getLength() || isNaN(options)) {
+        if (options < 0 || options > musicianList.getLength() || isNaN(options)) {
           console.log('The option does not exist');
         } else {
           const instrument = prompt("Vad gör instrument spelar musikern?");
-          const temp = band.displayOngoingBand();
+          const temp = bandList.displayOngoingBand();
           if (temp.lenght === 0) {
             console.log('It does not exist any current band')
           } else {

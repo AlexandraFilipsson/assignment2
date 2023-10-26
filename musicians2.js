@@ -1,4 +1,4 @@
-//ENBART för att SKAPA musiker
+
 export default class Musician2 {
   namn;
   birthyear;
@@ -27,12 +27,12 @@ export default class Musician2 {
     return {
       musicianId: 'id' + new Date().getTime(),
       name: this.namn,
-      "birthyear": this.birthyear,
-      "Age": this.birthyearToAge(this.birthyear),
-      "info": this.info,
-      "Instrument": [this.instrument],
-      "BandmemberIn": [],
-      "PreviousBandmemberIn": []
+      birthyear: this.birthyear,
+      Age: this.birthyearToAge(this.birthyear),
+      info: this.info,
+      Instrument: [this.instrument],
+      BandmemberIn: [],
+      PreviousBandmemberIn: []
     };
   }
 } 

@@ -1,5 +1,4 @@
 
-
 import fs from "fs";
 import Band2 from "./bands2.js";
 
@@ -20,7 +19,7 @@ export default class Bands {
     const data = JSON.parse(jsonString);
 
     for (let i = 0; i < data.length; i++) {
-      this.bandList.push(new Band2(data[i]));
+      this.bandList.push(data[i]);
     }
   }
 
@@ -44,22 +43,32 @@ export default class Bands {
   }
 
   onGoingBand() {
+    console.log(4)
     const temp = [];
-    for (let i = 0; i < this.bandList; i++) {
-      if (this.bandList[i].disbandment === null) {
-        temp.push({ bandId: this.bandList[i].bandId, bandName: this.bandList[i].bandName })
+    for (let i = 0; i < this.getLength(); i++) {
+      console.log(5)
+      if (this.bandList[i].Disbandment === null) {
+        console.log(6)
+        temp.push({ bandId: this.bandList[i].bandId, bandName: this.bandList[i].Name })
       }
     }
+    return temp;
   }
 
   displayOngoingBand() {
     const temp = this.onGoingBand();
+    console.log(1)
     if (temp.length != 0) {
-      for (let i = 0; i < temp.length; i++)
-        console.log(`${i}.${temp.bandName}`)
+      console.log(2)
+      for (let i = 0; i < temp.length; i++) {
+        console.log(3)
+        console.log(`${i}. ${temp[i].bandName}`);
+      }
+
     }
     return temp;
   }
+
   editBandList(index, musicianId, musicanName, instrument, date) {
     this.bandList[index].BandmemberIn.push({ musicianId: musicianId, musicanName: musicanName, instrument: instrument, Bandformed: date })
   }
