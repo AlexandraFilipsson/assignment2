@@ -1,5 +1,5 @@
 export default class Bands2 {
-  //årtal skapades, upphörde, lista om bandmedlemmar och vilka instrument, lista över tidigare medlemmar
+
   name;
   bandformed;
   disbandment;
@@ -19,8 +19,7 @@ export default class Bands2 {
   }
 
 
-  // Skapar ett objekt med denna hundens egenskaps information. 
-  // Används när vi ska skicka in till "Hundar.json". 
+
   dataInfo() {
     return {
       bandId: 'id' + new Date().getTime(),

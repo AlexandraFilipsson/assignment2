@@ -1,4 +1,3 @@
-
 import fs from "fs";
 import Musicians2 from "./musician2.js";
 import Bands from "./bands.js";
@@ -10,10 +9,6 @@ export default class Musician {
     this.fetchMusiciansList();
     this.band = new Bands();
 
-  }
-
-  get musicianList() {
-    return this.musicianList;
   }
 
   fetchMusiciansList() {
@@ -73,5 +68,24 @@ export default class Musician {
     this.band.editBandList(this.band.bandList.findIndex(x => x.bandId === bandId), this.musicianList[musicianIndex].musicianId, this.musicianList[musicianIndex].name, instrument, date)
     this.band.writeJson();
     this.writeJson();
+  }
+
+  removeMusician(bandId, bandIndex, musicId) {
+    const date = new Date().toLocaleString();
+
+    this.band.currentToPrevious(bandIndex, musicId, date);
+    this.currentToPrevious(this.musicianList.findIndex(x => x.musicianId === musicId), bandId, date);
+    this.band.writeJson();
+    this.writeJson();
+
+  }
+
+  currentToPrevious(musicianIndex, bandId, date) {
+    const musician = this.musicianList[musicianIndex];
+    const band = musician.BandmemberIn.find(x => x.bandId === bandId);
+    band["timeLeft"] = date;
+
+    musician.PreviousBandmemberIn.push(band);
+    musician.BandmemberIn.splice(musician.BandmemberIn.findIndex(x => x.bandId === bandId), 1)
   }
 }

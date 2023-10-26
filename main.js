@@ -107,14 +107,22 @@ while (run) {
           console.log('There are no avalible bands')
         } else {
           const option1 = prompt('Select the band you want to have: ')
-          if (options1 < 0 || options1 > tempBand.length() || isNaN(options1)) {
+          if (option1 < 0 || option1 > tempBand.length || isNaN(option1)) {
             console.log('This option does not exist!')
           } else {
-            const tempMusician = band.displayCurrentMember(tempBand[option1].index)
+            const tempMusician = bandList.displayCurrentMember(tempBand[option1].index)
+            const option2 = prompt('Which musician would you like to remove: ')
+            if (option2 < 0 || option2 > tempMusician.length || isNaN(option2)) {
+              console.log('This option does not exist!');
+            } else {
+              musicianList.removeMusician(tempBand[option1].bandId, tempBand[option1].index, tempMusician[option2])
+            }
+
           }
         }
       }
       break;
+
     default:
       console.log('option does not exist');
   }

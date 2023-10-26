@@ -1,4 +1,3 @@
-
 import fs from "fs";
 import Band2 from "./bands2.js";
 
@@ -63,17 +62,31 @@ export default class Bands {
     return temp;
   }
 
-  displayCurrentMember(bandindex) {
-    const band = this.bandList.[bandindex].CurrentBandMember;
+  displayCurrentMember(bandIndex) {
+    const band = this.bandList[bandIndex].CurrentBandMember;
     const currentMember = [];
     for (let i = 0; i < band.length; i++) {
-      console.log(`${i}. ${band[i].Name} ${band[i].instrument})`)
+      console.log(`${i}. ${band[i].name} ${band[i].instrument})`)
+      currentMember.push(band[i].memberId);
     }
+    return currentMember
   }
 
 
   editBandList(index, musicianId, musicanName, instrument, date) {
     this.bandList[index].CurrentBandMember.push({ memberId: musicianId, name: musicanName, instrument: instrument, yearJoined: date })
+  }
+
+  currentToPrevious(bandIndex, musicianId, date) {
+    const member = this.bandList[bandIndex].CurrentBandMember.find(x => x.memberId === musicianId);
+    member['dateLeft'] = date;
+
+    this.bandList[bandIndex].PreviousBandmebersIn.push(member);
+    this.bandList[bandIndex].CurrentBandMember.splice(this.bandList[bandIndex].CurrentBandMember.findIndex(x => x.memberId === musicianId), 1);
+    if (this.bandList[bandIndex].CurrentBandMember.length === 0) {
+      this.bandList[bandIndex].Disbandment = date;
+
+    }
   }
 }
 
