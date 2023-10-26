@@ -1,4 +1,4 @@
-
+//ENBART för att SKAPA musiker
 export default class Musician2 {
   namn;
   birthyear;

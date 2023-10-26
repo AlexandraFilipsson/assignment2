@@ -18,9 +18,6 @@ while (run) {
   5. Remove musician from a band
  `)
 
-  //looopa igenom hela listan - välj en
-
-  // LÄGG TILL SHOW BANDS ?!?!
   const options = prompt();
   switch (options.trim()) {
     case "1":
@@ -51,7 +48,7 @@ while (run) {
 
     case "3":
       if (musicianList.getLength() === 0) {
-        console.log('You can not creat a new band before you have a musician: ');
+        console.log('You can not create a new band before you have a musician: ');
       } else {
         musicianList.displayAllMusicians()
         let options = prompt('Add your first bandmember:'); //skriv text inne i()
@@ -73,13 +70,13 @@ while (run) {
         console.log('This band does not exist')
       } else {
         musicianList.displayAllMusicians();
-        const options = prompt('Which musician would to like to have?: ');
+        const options = prompt('Which musician would you like to have?: ');
         if (options < 0 || options > musicianList.getLength() || isNaN(options)) {
           console.log('The option does not exist');
         } else {
           const temp = bandList.displayOngoingBand();
           if (temp.lenght === 0) {
-            console.log('It does not exist any current band')
+            console.log('No current band exist')
           } else {
             const option2 = prompt('What band would you like to have?: ')
             if (option2 < 0 || option2 > temp.lenght || isNaN(option2)) {

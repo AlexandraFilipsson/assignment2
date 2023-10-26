@@ -19,16 +19,15 @@ export default class Bands2 {
   }
 
 
-
   dataInfo() {
     return {
       bandId: 'id' + new Date().getTime(),
-      "Name": this.namn,
-      "Bandformed": this.bandformed,
-      "Disbandment": null,
-      "CurrentBandMember": [{ memberId: this.memberId, name: this.bandmembers, instrument: this.instrument, yearJoined: this.bandformed }],
-      "PreviousBandmebersIn": [],
-      "info": this.info
+      Name: this.namn,
+      Bandformed: this.bandformed,
+      Disbandment: null,
+      CurrentBandMember: [{ memberId: this.memberId, name: this.bandmembers, instrument: this.instrument, yearJoined: this.bandformed }],
+      PreviousBandmebersIn: [],
+      info: this.info
     }
   }
 }

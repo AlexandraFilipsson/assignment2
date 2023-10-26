@@ -32,7 +32,7 @@ export default class Bands {
     this.bandList.push(newBand.dataInfo());
     return newBand.dataInfo().bandId;
   }
-  //det behöver inte vara exakt samma namn i creatBand
+
 
   writeJson() {
     fs.writeFileSync('./bands.json', JSON.stringify(this.bandList, null, 2), (err) => {
@@ -89,4 +89,3 @@ export default class Bands {
     }
   }
 }
-
