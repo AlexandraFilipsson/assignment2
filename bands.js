@@ -43,13 +43,10 @@ export default class Bands {
   }
 
   onGoingBand() {
-    console.log(4)
     const temp = [];
     for (let i = 0; i < this.getLength(); i++) {
-      console.log(5)
       if (this.bandList[i].Disbandment === null) {
-        console.log(6)
-        temp.push({ bandId: this.bandList[i].bandId, bandName: this.bandList[i].Name })
+        temp.push({ bandId: this.bandList[i].bandId, bandName: this.bandList[i].Name, index: i })
       }
     }
     return temp;
@@ -57,11 +54,8 @@ export default class Bands {
 
   displayOngoingBand() {
     const temp = this.onGoingBand();
-    console.log(1)
     if (temp.length != 0) {
-      console.log(2)
       for (let i = 0; i < temp.length; i++) {
-        console.log(3)
         console.log(`${i}. ${temp[i].bandName}`);
       }
 
@@ -69,7 +63,17 @@ export default class Bands {
     return temp;
   }
 
+  displayCurrentMember(bandindex) {
+    const band = this.bandList.[bandindex].CurrentBandMember;
+    const currentMember = [];
+    for (let i = 0; i < band.length; i++) {
+      console.log(`${i}. ${band[i].Name} ${band[i].instrument})`)
+    }
+  }
+
+
   editBandList(index, musicianId, musicanName, instrument, date) {
-    this.bandList[index].BandmemberIn.push({ musicianId: musicianId, musicanName: musicanName, instrument: instrument, Bandformed: date })
+    this.bandList[index].CurrentBandMember.push({ memberId: musicianId, name: musicanName, instrument: instrument, yearJoined: date })
   }
 }
+

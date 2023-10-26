@@ -63,13 +63,14 @@ export default class Musician {
 
   editMusicList(option, instrument, temptId, bandName, created) {
     if (!this.musicianList[option].Instrument.includes(instrument)) {
+      this.musicianList[option].Instrument.push(instrument);
     }
     this.musicianList[option].BandmemberIn.push({ bandName: bandName, bandId: temptId, Joined: created });
   }
-  addMusicianToBand(muscianIndex, instrument, bandId, bandName) {
+  addMusicianToBand(musicianIndex, instrument, bandId, bandName) {
     let date = new Date().getFullYear();
-    this.editMusicianList(musicianIndex, instrument, bandId, bandName);
-    this.band.editBandList(this.band.bandList.findIndex(x => x.bandId === bandId), this.musicianList[musicianIndex].musicianId, this.musicianList[i].name, instrument, date)
+    this.editMusicList(musicianIndex, instrument, bandId, bandName);
+    this.band.editBandList(this.band.bandList.findIndex(x => x.bandId === bandId), this.musicianList[musicianIndex].musicianId, this.musicianList[musicianIndex].name, instrument, date)
     this.band.writeJson();
     this.writeJson();
   }
